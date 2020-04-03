@@ -1,0 +1,19 @@
+name: Test action
+on:
+  [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Builds yml file
+        uses: ./
+        with:
+          SECRET: 'amiga:\n   data:\n     mongodb:\n       uri: mongodb://oplatcazur-cdb-weu1-poc-006:HXP1fgDEUZVrw2cnjdobwf0tZEtuj4ANwrmGEWa4hq4mBUVwX7uY67XrocjhaU4Zk0ehNcuTmlzmgBT09PGTpw==@oplatcazur-cdb-weu1-poc-006.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retryWrites=false&maxIdleTimeMS=120000&appName=@oplatcazur-cdb-weu1-poc-006@\n       dbName: heimdalquery-test'
+          FILE_NAME: 'test.yml'
+      - name: Upload file
+        uses: actions/upload-artifact@v1
+        with:
+          name: test.yml
+          path: test.yml
