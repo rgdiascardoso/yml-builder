@@ -4,5 +4,4 @@ WORKDIR /app
 
 RUN chmod +x /app/main.py
 
-ENV PYTHONPATH /app
-CMD ["/app/main.py"]
+CMD ["python", "/app/main.py"]
