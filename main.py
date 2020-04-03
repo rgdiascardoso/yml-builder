@@ -10,7 +10,7 @@ def save_file(base_path, file_name, expressions):
 
 def main():
     base_path = os.environ["GITHUB_WORKSPACE"]+'/'
-    secret = os.environ["SECRET"]
+    secret = os.environ["CONTENT"]
     file_name = os.environ["FILE_NAME"]
 
     expressions = split_by_newline(secret)
