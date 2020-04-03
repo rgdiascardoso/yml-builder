@@ -1,0 +1,12 @@
+name: "Builds YML from string"
+description: "Builds a yml file from a neline delimited string"
+inputs:
+  SECRET:
+    description: "A newline delimited string"
+    required: true
+  FILE_NAME:
+    description: "The name of the .yml file to be created"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
