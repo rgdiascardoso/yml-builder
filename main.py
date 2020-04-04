@@ -15,21 +15,35 @@ def split_param_action(param):
     buffer = param.split(':', 1)
     return (buffer[0], buffer[1])
 
-def replace_value(param, data):
-    parsed_param = param.split('=', 1)
+def get_parent_object(param, data):
+    if '=' in param:
+        parsed_param = param.split('=', 1)
+    else:
+        parsed_param = [param]
     keys = parsed_param[0].split('.')
-    value = parsed_param[1]
+    if len(parsed_param) == 2:
+        value = parsed_param[1]
+    else:
+        value = None
     for i in range(len(keys)-1):
         data = data[keys[i]]
-    data[keys[-1]] = eval(value)
+    return (keys[-1], value, data)
+
+def replace_value(param, data):
+    key, value, data = get_parent_object(param, data)
+    data[key] = eval(value)
+
+def add_key(param, data):
+    key, value, data = get_parent_object(param, data)
+    data.update({key: eval(value)})
 
 def append_value(param, data):
-    parsed_param = param.split('=', 1)
-    keys = parsed_param[0].split('.')
-    value = parsed_param[1]
-    for i in range(len(keys)-1):
-        data = data[keys[i]]
-    data[keys[-1]].append(eval(value))
+    key, value, data = get_parent_object(param, data)
+    data[key].append(eval(value))
+
+def delete_value(param, data):
+    key, value, data = get_parent_object(param, data)
+    data.pop(key, None)
 
 def main():
     base_path = os.environ['GITHUB_WORKSPACE']+'/'
@@ -44,8 +58,12 @@ def main():
             action, argument = split_param_action(param)
             if action == 'replace':
                 replace_value(argument, data)
+            elif action == 'add':
+                add_key(argument, data)
             elif action == 'append':
-                append_value(param, argument)
+                append_value(argument, data)
+            elif action == 'remove':
+                delete_value(argument, data)
     
     write_file(output_file, data)
 
