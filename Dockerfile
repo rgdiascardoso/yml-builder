@@ -1,9 +1,8 @@
 FROM python:rc-buster
 
 ADD . /app
-WORKDIR /app
 
-RUN pip install -r requirements.txt \
-        && chmod +x main.py
+RUN pip install -r /app/requirements.txt \
+        && chmod +x /app/main.py
 
-ENTRYPOINT [ "python", "main.py"]
+ENTRYPOINT [ "python", "/app/main.py"]
