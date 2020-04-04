@@ -12,7 +12,7 @@ jobs:
         with:
           inputFile: 'test/test.yml'
           outputFile: 'output.yml'
-          params: "--replace:name='John J''Ango' --replace:languages.perl='Noob' --replace:employed=False --replace:foods=['Chips', 'Steak']"
+          params: "--replace:name='John J''Ango' --replace:languages.perl='Noob' --replace:employed=False --replace:foods=['Chips', 'Steak'] --append:hobbies='Reading'"
       - name: Upload output file
         uses: actions/upload-artifact@v1
         with:
