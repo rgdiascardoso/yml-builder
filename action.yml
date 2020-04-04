@@ -1,12 +1,17 @@
-name: "Builds YML from string"
-description: "Builds a yml file from a neline delimited string"
+name: "YAML Variable substitution"
+description: "Replaces value form a yml file"
 inputs:
-  SECRET:
-    description: "A newline delimited string"
+  INPUT_FILE:
+    description: "Name and path of the input file"
     required: true
-  FILE_NAME:
-    description: "The name of the .yml file to be created"
+  OUTPUT_FILE:
+    description: "Name and path of the output INPUT_FILE"
+    required: true
+  PARAMS:
+    description: "Separated list of key-value pairs to be replaced"
     required: true
 runs:
   using: "docker"
   image: "Dockerfile"
+  args:
+    - ${{ inputs.PARAMS }}

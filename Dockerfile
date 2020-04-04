@@ -1,7 +1,9 @@
-FROM python:3.9.0a5-buster
+FROM python:rc-buster
+
 ADD . /app
 WORKDIR /app
 
-RUN chmod +x /app/main.py
+RUN pip install -r requirements.txt \
+        && chmod +x main.py
 
-CMD ["python", "/app/main.py"]
+ENTRYPOINT [ "python", "main.py"]
