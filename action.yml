@@ -1,17 +1,17 @@
 name: "YAML Variable substitution"
 description: "Replaces value form a yml file"
 inputs:
-  INPUT_FILE:
+  input_file:
     description: "Name and path of the input file"
     required: true
-  OUTPUT_FILE:
+  output_file:
     description: "Name and path of the output INPUT_FILE"
     required: true
-  PARAMS:
+  params:
     description: "Separated list of key-value pairs to be replaced"
     required: true
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.PARAMS }}
+    - ${{ inputs.params }}

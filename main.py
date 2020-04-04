@@ -21,8 +21,8 @@ def parse_params(params):
 
 def main():
     base_path = os.environ['GITHUB_WORKSPACE']+'/'
-    input_file = base_path + os.environ['INPUT_FILE']
-    output_file = base_path + os.environ['OUTPUT_FILE']
+    input_file = base_path + os.environ['input_file']
+    output_file = base_path + os.environ['output_file']
     params = sys.argv[1]
 
     data = load_file(input_file)
