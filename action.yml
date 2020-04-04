@@ -1,10 +1,10 @@
 name: "YAML Variable substitution"
 description: "Replaces value form a yml file"
 inputs:
-  input_file:
+  inputFile:
     description: "Name and path of the input file"
     required: true
-  output_file:
+  outputFile:
     description: "Name and path of the output INPUT_FILE"
     required: true
   params:
