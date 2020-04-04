@@ -10,9 +10,9 @@ jobs:
       - name: Builds yml file
         uses: ./
         with:
-          INPUT_FILE: 'test/test.yml'
-          OUTPUT_FILE: 'output.yml'
-          PARAMS: "--replace:name='John J''Ango' --replace:languages.perl='Noob' --replace:employed=False --replace:foods=['Chips', 'Steak']"
+          input_file: 'test/test.yml'
+          output_file: 'output.yml'
+          params: "--replace:name='John J''Ango' --replace:languages.perl='Noob' --replace:employed=False --replace:foods=['Chips', 'Steak']"
       - name: Upload output file
         uses: actions/upload-artifact@v1
         with:
